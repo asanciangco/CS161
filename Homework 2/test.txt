@@ -1,0 +1,44 @@
+Problem 1 test functions
+
+(DFS '((w x)(y z)))
+(DFS '((a (b)) c (d)))
+
+Problem 2 test functions
+
+(DFID '((a (b)) c (d)) 0) ; Should output NIL
+(DFID '((a (b)) c (d)) 1) ; Should output (C)
+(DFID '((a (b)) c (d)) 2) ; Should output (C A C D)
+(DFID '((a (b)) c (d)) 3) ; Should output (C A C D A B C D)
+
+(DFID '(a (b (c (d (e))))) 0) ; NIL
+(DFID '(a (b (c (d (e))))) 1) ; (a)
+(DFID '(a (b (c (d (e))))) 2) ; (a a b)
+(DFID '(a (b (c (d (e))))) 3) ; (a a b a b c)
+(DFID '(a (b (c (d (e))))) 4) ; (a a b a b c a b c d)
+(DFID '(a (b (c (d (e))))) 5) ; (a a b a b c a b c d a b c d e)
+
+(DFID 'a 0) ; 
+
+Problem 3 test functions
+
+(final-state '(3 3 NIL))	; returns T
+(final-state '(0 3 NIL))	; returns NIL
+(final-state '(3 0 NIL))	; returns NIL
+(final-state '(3 3 T))		; returns NIL
+
+(next-state '(3 3 t) 1 0) ; should return NIL, too many cannibals on east side
+(next-state '(3 3 t) 0 1) ; ((0 1 NILL))
+(next-state '(3 3 t) 1 1) ; ((1 1 NIL))
+(next-state '(3 3 t) 2 2) ; ((2 2 NIL))
+(next-state '(3 3 t) 4 0) ; NIL
+(next-state '(3 3 t) 0 4) ; NIL
+
+(succ-fn '(3 3 t)) ; -> ((0 1 NIL) (1 1 NIL) (0 2 NIL))
+(succ-fn '(1 1 t)) ; -> ((3 2 NIL) (3 3 NIL))
+
+(on-path '(1 1 T) '((0 0 T)(1 0 T)(0 1 NIL)(1 1 NIL)(1 1 T))) ; T
+(on-path '(1 1 T) '((0 0 T)(1 0 T)(0 1 NIL)(1 1 NIL))) ; N
+(on-path '(1 1 T) ()) 
+(on-path '(1 1 T) '((1 1 T)))
+
+(mc-dfs '(3 3 T) NIL)

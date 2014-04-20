@@ -1,0 +1,116 @@
+1) 
+
+Generalized product rule
+P(A,B|K) = P(A^B^K) / P(K)
+	= P(A|B^K) x P(B^K) / P(K)
+	= P(A|B^K) x P(B|K) x P(K) / P(K)
+	= P(A|B^K) x P(B|K)
+
+Generalized Bayes' Rule
+From above:
+P(A|B,K) = P(A,B|K)/P(B|K)
+	= P(A^B^K) / P(K) / P(B|K)
+	= P(B|A^K) x P(A^K) / P(K) / P(B|K)
+	= P(B|A^K) x P(A|K) x P(K) / P(K) / P(B|K)
+	= P(B|A^K) x P(A|K) / P(B|K)
+
+2) P(O|+)?
+
+P(O) = .5
+P(N) = .2
+P(~O ^ ~N) = .3
+P(+|O) = .9
+P(+|N) = .3
+P(+|~O ^ ~N) = .1
+
+P(+)  = P(+|O)P(O) + P(+|N)P(N) + P(+|~O ^ ~N)P(~O ^ ~N)
+	= (.9)(.5) + (.2)(.3) + (.3)(.1)
+	= .45 + .06 + .03
+	= .54
+
+P(O|+) = P(+|O) x P(O) / P(+)
+	 = (.9)(.5)/(.54)
+	 = .8333
+
+3)
+
+W	B   Sq  1 | # | Prob
+---------------------------
+1 	T   T   T | 2 | .1538
+2 	T   T   F | 4 | .3077
+3 	T   F   T | 1 | .0769
+4 	T   F   F | 2 | .1538
+5 	F   T   T | 1 | .0769
+6	F   T   F | 1 | .0769
+7	F   F   T | 1 | .0769
+8	F   F   F | 1 | .0769
+
+World that hold true for:
+alpha1: 1, 2, 3, 4
+	=> .1538 + .3077 + .0769 + .1538
+	=> P(alpha1) = .6922
+
+alpha2: 1, 2, 5, 6
+	=> .1538 + .3077 + .0769 + .7069
+	=> P(alpha2) = .6153
+
+alpha3: 1, 2, 5
+	=> .1538 + .3077 + .0769
+	=> P(alpha3) = .5384
+
+Sentence one:
+alpha = one
+beta 	= square
+gamma = white
+"alpha is independent of beta given gamma"
+=> "one is independent of square given white"
+
+P(one | white) = 2/4 = .5
+P(one | white ^ square) = 1/2 = .53
+
+
+Sentence twwo:
+alpha = one
+beta  = square
+gamma = black
+=> "one is independant of sqaure given black"
+
+P(one | black) = 3/9 = .3333
+P(one | black ^ square) = 2/6 = .3333
+
+
+4a) Markovian Assumptions:
+	I(A, {}, {B,E})
+	I(B, {}, {A,C})
+	I(C, A, {B, D, E})
+	I(D, {A, B}, {C, E})
+	I(E, B, {A, C, D, F, G})
+	I(F, {C, D}, {A, B, E})
+	I(G, F, {A, B, C, D, E, H})
+	I(H, {F, E}, {A, B, C, D, G})
+
+4b) True or false:
+	d_separated(A, BH, E)  ==> False (Path ACFHE)
+	d_separated(G, D, E)   ==> False (Path GFHE)
+	d_separated(AB, F, GH) ==> False (Path BEH)
+
+4c) Pr(a, b, c, d, e, f, g, h) in factored form
+	= Pr(a | b, c, d, e, f, g, h) *
+	  Pr(b | c, d, e, g, g, h) *
+	  Pr(c | d, e, f, g, h) *
+	  Pr(d | e, f, g, h) *
+	  Pr(e | f, g, h) *
+	  Pr(f | g, h) *
+	  Pr(g | h) *
+	  Pr(h)
+
+4d) 
+	Pr(A=0,B=0) = P(A=0)P(B=0)	Since they're independant
+	= (.8)*(.3)
+	= .24
+
+	Pr(E=1 | A=1) = Pr(E=1)		Since A and E are independant
+	= Pr(E=1 | B=1)Pr(B=1) + P(E=1 | B=0)Pr(B=0)
+	= (.1)(.7) + (.9)(.3)
+	= .07 + .27
+	= .34

@@ -1,0 +1,82 @@
+Alex Sanciangco
+704050064
+
+MOST GENERAL UNIFIERS
+Assuming ground terms are uppercase and variables are lowercase
+
+
+1a) P(A, B, B), P(x, y, z)
+	Unifier = {x/A, y/B, z/B}
+
+1b) Q(y, G(A, B)), Q(G(x,x), y)
+	No such unifier exists. The first atomic sentence forces the 'y' variable of the second sentence to be 'G(A,B)'. If y were to take this value, there is no possible way the first parameter of the second sentence ("G(x,x)") can be a function of two separate variables; a contradiction. 
+
+1c) R(x, A, z), R(B, y, z)
+	Unifier = {x/B, y/A, z/C} where C is an unused ground term. If no unused ground term available, there will be an unaccounted for variable 'z'.
+
+1d) Older(Father(y), y), Older(Father(x), John)
+	Unifier = {x/John, y/John}
+
+1e) Knows(Father(y), y), Knows(x,x)
+	No such unifier exists. The second atomic sentences forces the two parameters of "Knows()" to be the same. Since the first atomic sentence has two different parameters, one of which is a function of the second, there is no way to make the two paramters the same unless Father(y) = y.
+
+2a)
+	(A x)(Food(x) => Likes(John, x))
+	Food(Apples)
+	Food(Chicken)
+	(A q,r)(Eats(q,r) ^ ~Kills(r,q) => Food(r))
+	(A t,u)(Kills(t,u) => ~Alive(u))
+	Eats(Bill, Peanuts) & Alive(Bill)
+	(A y)(Eats(Bill, y) => Eats(Sue, y))
+
+2b)
+	1: ~Food(x) | Likes(John, x)
+	2: Food(Apples)
+	3: Food(Chicken)
+	4: ~Eats(q,r) | Kills(r,q) | Food(r)
+	5: ~Kills(t,u) | ~Alive(u)
+	6: Eats(Bill, Peanuts)
+	7: Alive(Bill)
+	8: ~Eats(Bill, y) | Eats(Sue, y)
+
+2c)
+	Resolution clause: 
+	0: ~Likes(John, Peanuts)
+
+	9: ~Eats(John,Peanuts) | Kills(Peanuts,John) (1&4) Unifier: {q/John, r/Peanuts, x/Peanuts}
+	10: ~Eats(John,Peanuts) | ~Alive(John) (5&9) Unifier: {t/Peanuts, u/John}
+	11: ~Eats(John,Peanuts) | Food(Peanuts) | ~Alive(John) (4&5) Unifier: {q/John, r/Peanuts, t/Peanuts, u/John}
+	12: Likes(John, Peanuts) | ~Eats(John,Peanuts) | ~Alive(John) (1&11) Unifier: {x/Peanuts}
+	13: ~Kills(Peanuts, Bill) (5&7) Unifier: {t/Peanuts, u/Bill}
+	14: ~Eats(Bill, Peanuts) | Food(Peanuts) (4&13) Unifier: {q/Bill, r/Peanuts}
+	15: Food(Peanuts) (14&6)
+	16: Likes(John, Peanuts) (1&15) Unifier: {x/Peanuts}
+
+	0 and 16 contradict!!! Therefore John likes peanuts. (Clauses 9-12 aren't needed but I found anyways in my efforts)
+
+2d) (continuing from the 2b clause list)
+	9: Eats(Sue, Peanuts) (6&8) Unifier: {y/Peanuts}
+
+	This is just a logical reduction. Therefore, we can deduce that Sue eats peanuts (in addition to whatever else Bill eats).
+
+2e) 
+	1: ~Food(x) | Likes(John, x)
+	2: Food(Apples)
+	3: Food(Chicken)
+	4: ~Eats(q,r) | Kills(r,q) | Food(r)
+	5: ~Kills(t,u) | ~Alive(u)
+	6: Eats(a,b) | Die(a)
+	7: ~Die(c) | ~Alive(c)
+	8: Alive(Bill)
+	9: ~Eats(Bill, y) | Eats(Sue, y)
+
+	10: ~Die(Bill, t) (7&8) Unifier: {q/Bill}
+	11: Eats(Bill,b) (6&10) Unifier: {a/Bill}
+	12: Eats(Sue, b) (9&11) Unifier: {y/b}
+
+	Statement 12 implies that Sue eats anything (to stay alive). 
+
+
+
+
+

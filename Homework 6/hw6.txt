@@ -1,0 +1,28 @@
+Alex Sanciangco
+704050064
+
+I was unable to get the RSat program to work properly. I tried downloading every Platform type for every version release, but none worked. Most would build, but the common error was with the "SatElite" executable file; either the program couldn't find it (even after I tried renaming paths and moving it to more convenient locations) or it wouldn't run it (the common error was "cannot execute binary file" even after performing chmod +x on the file). I even tried compiling the source files from version 2.02, but still could not get the program to work properly. 
+
+Since I couldn't get the program working properly, I will try to just answer the remaining questions to the best of my ability.
+
+(Regarding the 7-node graph with 3 colors)
+Is the instance satisfiable?
+
+No. Intuititvely looking at the graph, one can determine that a 3 color assignment to this graph isn't possible. Assuming the colors are A, B, and C, node 1 will receive color A, meaning 5 and 7 will have to get B while 6 and 2 get C (only way to assign colors without violating constraints.) This now forces both 4 and 3 to receive color A, which violiates the constraints.
+
+
+(Regrading the 7-node graph with 4 colors)
+Is the instance satisfiable?
+
+Yes! The previously described scenario could've been solved had their been on additional color: do the color assignments as stated, except color node 3 with color D. Now all the constraints have been satisfied.
+
+
+(Regarding the 7-node graph)
+What do the answers of these two SAT instances tell you about the graph coloring problem of the above graph? Can you give a solution (a coloring) to the graph coloring problem of the above graph based on the results of RSat?
+
+The answers tell us that the graph can satisfy the graph coloring problem if we are given AT LEAST 4 different colors. This can possible correspond to the fact that all of the of nodes in the graph have 4 edges, save for 2 of them that have 3. A possible solution to the graph coloring problem is given in the second answer (Regrading the 7-node graph with 4 colors). It follows logically that if a graph can satisfy the graph coloring problem for n colors, it can satisfy it for n + 1 colors, as n -> infinity. 
+
+
+What is the minimum number of colors required to properly color this graph?
+
+As stated before, the minimum number of colors needed to color this graph is 4.  
